@@ -1,0 +1,32 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "globalEnv": ["NODE_ENV"],
+  "tasks": {
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "env": ["DATABASE_URL", "APP_URL", "SENTRY_DSN"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {},
+    "typecheck": {
+      "dependsOn": ["transit"]
+    },
+    "test": {
+      "dependsOn": ["transit"],
+      "env": ["DATABASE_URL"]
+    },
+    "test:e2e": {
+      "dependsOn": ["build"],
+      "env": ["DATABASE_URL", "APP_URL"],
+      "passThroughEnv": ["CI", "PLAYWRIGHT_*"],
+      "cache": false
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@lu/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tsconfig.base.json": "./tsconfig.base.json",
+    "./eslint/domain": "./eslint/domain.js",
+    "./eslint/node": "./eslint/node.js"
+  },
+  "devDependencies": {
+    "eslint": "^10.12.0"
+  },
+  "dependencies": {
+    "typescript-eslint": "^8.71.1"
+  },
+  "peerDependencies": {
+    "eslint": "^10"
+  }
+}

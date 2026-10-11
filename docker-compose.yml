@@ -1,0 +1,20 @@
+# Postgres local pentru dev și teste. Versiunea majoră trebuie să fie aceeași ca în proiectul Neon.
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: lu
+      POSTGRES_PASSWORD: lu
+      POSTGRES_DB: lucruri_utile
+    ports:
+      - '5433:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U lu -d lucruri_utile']
+      interval: 2s
+      timeout: 3s
+      retries: 15
+
+volumes:
+  pgdata:

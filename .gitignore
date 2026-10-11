@@ -1,0 +1,27 @@
+node_modules/
+.turbo/
+dist/
+coverage/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# env — doar .env.example intră în git
+.env*
+!.env.example
+
+# playwright
+playwright-report/
+test-results/
+blob-report/
+
+# vercel
+.vercel
+
+# misc
+.DS_Store
+*.pem
+*.log

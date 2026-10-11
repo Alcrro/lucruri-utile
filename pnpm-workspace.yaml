@@ -1,0 +1,9 @@
+packages:
+  - apps/*
+  - packages/*
+
+# pnpm blochează implicit scripturile de instalare; fiecare pachet e aprobat explicit.
+allowBuilds:
+  esbuild: true # tsx, tsup, drizzle-kit — verifică binarul nativ
+  sharp: false # binare prebuilt prin optionalDependencies, scriptul nu e necesar
+  unrs-resolver: false

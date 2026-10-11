@@ -1,0 +1,26 @@
+{
+  "name": "lucruri-utile",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.11.2",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "format": "prettier --write .",
+    "db:up": "docker compose up -d postgres",
+    "db:generate": "pnpm --filter @lu/db generate",
+    "db:migrate": "pnpm --filter @lu/db migrate",
+    "db:studio": "pnpm --filter @lu/db studio"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10",
+    "turbo": "^2.11.7"
+  }
+}
