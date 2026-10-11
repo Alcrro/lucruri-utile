@@ -1,6 +1,7 @@
 {
   "name": "lucruri-utile",
   "private": true,
+  "license": "UNLICENSED",
   "type": "module",
   "packageManager": "pnpm@12.11.2",
   "engines": {

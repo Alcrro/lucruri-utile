@@ -35,3 +35,9 @@ pnpm --filter @lu/web exec playwright install chromium   # o singură dată, pen
 ## Structură
 
 `apps/web` (Next.js) · `apps/worker` (pg-boss) · `packages/*` (domeniu, independent de framework). Detalii în [docs/structure.md](docs/structure.md).
+
+## Licență
+
+© 2026 Alexandru Roventa. Toate drepturile rezervate.
+
+Codul și documentația sunt publice doar pentru consultare. Nu se acordă nicio licență de copiere, modificare, distribuire sau utilizare, integral sau parțial, fără acordul scris al autorului.
