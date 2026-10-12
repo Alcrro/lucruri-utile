@@ -14,6 +14,7 @@ Citește `docs/prd.md` și ADR-ul relevant din `docs/decisions/` înainte de a l
 - Orice server action: validare Zod → verificare auth/rol → apel serviciu din `@lu/*`.
 - Operațiile lungi (import, recalcul compatibilitate, emailuri, facturi) merg în coada pg-boss (`QUEUES` din `@lu/db`), niciodată în request.
 - Nicio compatibilitate presupusă: date lipsă → „date de compatibilitate indisponibile” (ADR-006).
+- În pachete: logica pură (fișiere fără sufix) nu atinge DB-ul; accesul la date e doar în `*.queries.ts`, use case-urile în `*.service.ts`. Fără repository interfaces peste Drizzle; ports doar pentru servicii externe (ADR-011). Denumiri și structură: `docs/structure.md`.
 
 ## Verificare înainte de a declara gata
 
