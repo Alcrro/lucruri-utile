@@ -9,7 +9,7 @@ import {
   unique,
   uuid,
 } from 'drizzle-orm/pg-core';
-import { createdAt, id, updatedAt } from './_shared';
+import { createdAt, id, updatedAt } from './columns';
 import { attributeValueColumns, attributeValueConstraints } from './attributes';
 import { products } from './catalog';
 

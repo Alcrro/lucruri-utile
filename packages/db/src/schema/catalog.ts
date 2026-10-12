@@ -14,7 +14,7 @@ import {
   uuid,
   type AnyPgColumn,
 } from 'drizzle-orm/pg-core';
-import { createdAt, id, updatedAt } from './_shared';
+import { createdAt, id, updatedAt } from './columns';
 import {
   attributeDefinitions,
   attributeValueColumns,

@@ -9,7 +9,7 @@ import { testDatabaseUrl } from './database-url';
  * și aplică migrațiile. Fiecare rulare pornește de la o bază goală, deci verifică și că
  * migrațiile se aplică de la zero.
  */
-export default async function setup() {
+export async function setup() {
   const url = testDatabaseUrl();
   const name = new URL(url).pathname.slice(1);
 

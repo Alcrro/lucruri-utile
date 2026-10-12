@@ -16,6 +16,7 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@lu/config": "workspace:*",
     "@playwright/test": "^1.64.0",
     "@tailwindcss/turbopack": "^4",
     "@testing-library/dom": "^10.4.2",
@@ -26,7 +27,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.1.2",
-    "eslint": "^9",
+    "eslint": "^10.12.0",
     "eslint-config-next": "16.4.0",
     "jsdom": "^30.1.2",
     "tailwindcss": "^4",

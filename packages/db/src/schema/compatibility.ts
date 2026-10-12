@@ -12,7 +12,7 @@ import {
   unique,
   uuid,
 } from 'drizzle-orm/pg-core';
-import { createdAt, id, updatedAt } from './_shared';
+import { createdAt, id, updatedAt } from './columns';
 import { categories, products } from './catalog';
 import { deviceKind, devices } from './devices';
 

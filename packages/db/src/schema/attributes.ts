@@ -12,7 +12,7 @@ import {
   uuid,
   type PgColumn,
 } from 'drizzle-orm/pg-core';
-import { createdAt, id } from './_shared';
+import { createdAt, id } from './columns';
 
 export const attributeType = pgEnum('attribute_type', ['enum', 'number', 'boolean', 'text']);
 export const attributeScope = pgEnum('attribute_scope', ['product', 'device', 'both']);

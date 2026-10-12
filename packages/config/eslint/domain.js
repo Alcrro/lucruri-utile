@@ -9,8 +9,39 @@ const frameworkImports = {
 const deepImportMessage =
   'Importă doar API-ul public al pachetului (@lu/<nume>), fără deep imports.';
 
+const dataAccessMessage =
+  'Accesul la date e doar în *.queries.ts (ADR-011). Aici sunt permise doar importuri de tipuri.';
+
 export default [
   ...node,
+  {
+    // Logica pură și serviciile nu ating baza de date direct: o fac prin *.queries.ts (ADR-011).
+    files: ['src/**/*.ts'],
+    ignores: ['src/**/*.queries.ts', 'src/**/*.test.ts'],
+    rules: {
+      '@typescript-eslint/no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: '@lu/db',
+              // Numele cozilor sunt constante, nu acces la date: serviciile publică joburi.
+              allowImportNames: ['QUEUES'],
+              allowTypeImports: true,
+              message: dataAccessMessage,
+            },
+          ],
+          patterns: [
+            {
+              group: ['drizzle-orm', 'drizzle-orm/*', 'pg'],
+              allowTypeImports: true,
+              message: dataAccessMessage,
+            },
+          ],
+        },
+      ],
+    },
+  },
   {
     files: ['src/**/*.ts'],
     rules: {

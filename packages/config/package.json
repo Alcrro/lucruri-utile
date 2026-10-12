@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     "./tsconfig.base.json": "./tsconfig.base.json",
+    "./eslint/conventions": "./eslint/conventions.js",
     "./eslint/domain": "./eslint/domain.js",
     "./eslint/node": "./eslint/node.js"
   },
@@ -12,6 +13,7 @@
     "eslint": "^10.12.0"
   },
   "dependencies": {
+    "eslint-plugin-check-file": "^3.3.2",
     "typescript-eslint": "^8.71.1"
   },
   "peerDependencies": {

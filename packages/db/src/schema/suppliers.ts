@@ -15,7 +15,7 @@ import {
   uniqueIndex,
   uuid,
 } from 'drizzle-orm/pg-core';
-import { createdAt, id, updatedAt } from './_shared';
+import { createdAt, id, updatedAt } from './columns';
 import { attributeDefinitions } from './attributes';
 import { categories, products } from './catalog';
 
