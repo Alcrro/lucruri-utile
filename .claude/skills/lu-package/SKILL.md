@@ -58,7 +58,9 @@ export { default } from '@lu/config/eslint/domain';
 
 `packages/$ARGUMENTS/vitest.config.ts`: copiază varianta din `packages/db/vitest.config.ts`. Fără teste pe DB: doar `unit`. Cu teste pe DB: și proiectul `integration`, cu `globalSetup` din `@lu/db/testing/global-setup`.
 
-`packages/$ARGUMENTS/src/index.ts`: singurul API public. Exportă explicit (`export { x } from './x'`), fără `export *` din module interne.
+`packages/$ARGUMENTS/src/index.ts`: singurul API public. Exportă explicit serviciile, schemele, tipurile și erorile (`export { recomputeCompatibility } from './recompute/recompute.service'`), fără `export *` și fără să expună `*.queries.ts`.
+
+`packages/$ARGUMENTS/src/errors.ts`: erorile de domeniu ale pachetului, `class XError extends DomainError` cu `code` stabil.
 
 ## 3. Conectare
 
@@ -67,9 +69,11 @@ export { default } from '@lu/config/eslint/domain';
 3. `apps/web` transpilează pachetele interne. Verifică în `next.config.ts` dacă e nevoie de `transpilePackages` (citește ghidul din `node_modules/next/dist/docs/`).
 4. Verificare: `pnpm typecheck && pnpm lint && pnpm test && pnpm build`.
 
-## 4. Convenții în pachet
+## 4. Structura internă (ADR-011, `docs/structure.md`)
 
-- Fără `next`, `react`, `server-only` și fără deep imports între pachete (ESLint le blochează).
-- Funcțiile de serviciu primesc dependențele explicit: `(deps: { db: Db; … }, input)` sau un factory. Fără singletoni importați.
-- Schemele Zod de input sunt în pachet și se exportă, ca web-ul să le refolosească.
-- Teste lângă cod: `x.test.ts` (unit), `x.int.test.ts` (integrare pe Postgres).
+- Foldere pe feature-uri (`rules/`, `recompute/`), nu pe straturi. Fișiere și foldere kebab-case, doar named exports (ESLint).
+- Rolul fișierului e în sufix: fără sufix = logică pură; `*.queries.ts` = acces la date; `*.service.ts` = use case-uri; `*.schemas.ts` = Zod; `ports.ts` + `adapters/` doar pentru servicii externe.
+- `@lu/db`, `drizzle-orm` și `pg` se importă la runtime doar în `*.queries.ts` (ESLint). În rest: `import type`, plus `QUEUES` pentru publicarea joburilor.
+- Fără repository interfaces, mapper-e sau entități-clasă peste Drizzle.
+- Serviciile primesc dependențele explicit (`(deps: { db: Db; … }, input)`) și își deschid singure tranzacția.
+- Teste lângă cod: `x.test.ts` pentru logica pură, `x.int.test.ts` pentru queries și servicii, pe Postgres real.

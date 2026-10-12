@@ -10,7 +10,7 @@ Schema se schimbă **doar** prin `packages/db/src/schema/*.ts` + migrație gener
 
 ## 1. Convenții — verifică fiecare punct
 
-- [ ] ID: `id()` din `_shared.ts` (UUID v7 generat în aplicație). Pentru entitățile din URL-uri publice: și un `slug` unic.
+- [ ] ID: `id()` din `columns.ts` (UUID v7 generat în aplicație). Pentru entitățile din URL-uri publice: și un `slug` unic.
 - [ ] `createdAt()` pe orice tabelă; `updatedAt()` pe tabelele editabile.
 - [ ] Bani: `integer`, coloană `*_minor` (bani RON). Cote: `*_bps`. **Niciodată** `numeric`/`real` pentru bani.
 - [ ] Chei TS în `camelCase`; numele SQL sunt generate în `snake_case` (`casing: 'snake_case'`).

@@ -16,7 +16,7 @@ disable-model-invocation: true
 ## 2. Citește înainte de primul rând de cod
 
 - `CLAUDE.md` — regulile nenegociabile; le aplici fără să le rediscuți.
-- `docs/structure.md` — convenții și testare.
+- `docs/structure.md` și ADR-011 — structura pachetelor (logică pură / `*.queries.ts` / `*.service.ts`), denumiri, atomic design, testare. ESLint impune o parte din ele; restul le respecți tu.
 - ADR-urile din antetul spec-ului.
 - Toate fișierele pe care le vei modifica. Nu scrii în fișiere necitite.
 - Cod Next.js: ghidul relevant din `apps/web/node_modules/next/dist/docs/` (versiunea 16.4 diferă de ce știi). Turborepo: `docs/` din pachetul `turbo` instalat.
@@ -26,7 +26,7 @@ disable-model-invocation: true
 ## 3. Execuția unui CP
 
 1. Anunță: `→ CP<N>: <titlu>`.
-2. **Testele întâi** pentru logica de domeniu (reguli de compatibilitate, parsare, mașini de stări, idempotență): scrie testul, vezi-l picând, apoi implementează.
+2. **Testele întâi** pentru logica pură (reguli de compatibilitate, parsare, mașini de stări) și pentru idempotență: scrie testul, vezi-l picând, apoi implementează. Logica de business care ajunge într-un `*.queries.ts` sau `*.service.ts` se mută într-un fișier pur.
 3. Implementează **doar** ce e în scope-ul CP-ului.
 4. Verifică:
    - `pnpm --filter <pachet-afectat> test`

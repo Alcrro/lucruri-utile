@@ -41,10 +41,18 @@ Ce livrează feature-ul, în 2-3 propoziții. **Nu intră:** <listă explicită>
 Tabele/coloane noi sau modificate, descrise în termeni Drizzle (nu SQL): tipuri, FK + `onDelete`,
 constrângeri `check`, indexuri și motivul lor. Migrare de date, dacă există rânduri afectate.
 
-## API-ul pachetelor
+## Pachete (structura din ADR-011)
 
-Pentru fiecare `@lu/<pachet>`: funcțiile exportate, cu semnătura completă
-(dependențele explicite ca prim argument: `db`, clienți externi), schemele Zod exportate și erorile tipate.
+Pentru fiecare `@lu/<pachet>`, pe feature-uri:
+
+- **Logică pură** (fișiere fără sufix): funcțiile și tipurile lor; aici stau regulile de business.
+- **`*.queries.ts`**: ce citește și ce scrie, cu indexurile pe care se bazează.
+- **`*.service.ts`**: use case-urile exportate, cu semnătura completă (`deps` explicite), granița tranzacției și ce erori aruncă.
+- **`*.schemas.ts`**: schemele Zod de input, refolosite în web.
+- **`ports.ts` / `adapters/`**: doar dacă feature-ul atinge un serviciu extern.
+- **`errors.ts`**: erorile noi, cu `code`.
+
+Fișierele noi se listează cu calea completă, kebab-case.
 
 ## Puncte de intrare
 
@@ -78,7 +86,7 @@ Decizii mici, valabile doar în feature. Dacă una e greu de schimbat ulterior �
 
 ## 4. `todos.md`
 
-Ordinea checkpoint-urilor: **schemă → logica din pachet + teste → punctul de intrare (job / action) → UI → E2E**. Fiecare CP e o unitate logică ce poate fi verificată singură.
+Ordinea checkpoint-urilor: **schemă → logică pură + teste unit → queries + service + teste de integrare → punctul de intrare (job / action) → UI → E2E**. Fiecare CP e o unitate logică ce poate fi verificată singură.
 
 ```markdown
 # <Feature> — Checkpoints
